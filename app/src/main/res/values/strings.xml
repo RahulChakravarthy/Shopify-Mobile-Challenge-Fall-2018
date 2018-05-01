@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ShopifyMobileChallengeFall2018</string>
+    <string name="cannot_find_servers">Cannot find servers</string>
+    <string name="orders_to_fulfill">Orders To Fulfill</string>
+    <string name="pending_payments">Pending Payments</string>
+    <string name="cancelled_payments">Cancelled Payments</string>
 </resources>
