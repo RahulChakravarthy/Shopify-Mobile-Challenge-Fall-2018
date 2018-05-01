@@ -4,6 +4,7 @@ public class MainView extends BaseView {
 
     @Override
     public void setupView() {
-
+        //do nothing
     }
+
 }

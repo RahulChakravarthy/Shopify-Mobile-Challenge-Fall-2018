@@ -4,4 +4,8 @@
     <string name="orders_to_fulfill">Orders To Fulfill</string>
     <string name="pending_payments">Pending Payments</string>
     <string name="cancelled_payments">Cancelled Payments</string>
+    <string name="summary">Summary</string>
+    <string name="orders_to_be_fulfilled">Number of Orders to be Fulfilled</string>
+    <string name="number_of_pending_payment_orders">Number of Pending Payment Orders</string>
+    <string name="number_of_cancelled_orders">Number of Cancelled Orders</string>
 </resources>

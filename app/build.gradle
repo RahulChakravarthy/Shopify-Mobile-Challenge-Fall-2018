@@ -38,5 +38,5 @@ dependencies {
     //Gson json manipulation
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //RecyclerView
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
