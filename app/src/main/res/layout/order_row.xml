@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/orderRow"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorShadowGray"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="3dp"
+            android:background="@color/colorLightGray">
+            <ImageView
+                android:id="@+id/orderLogo"
+                android:background="@drawable/shopifybackground"
+                android:layout_width="@dimen/extra_large_logo_image_width"
+                android:layout_height="@dimen/extra_large_logo_image_height"/>
+            <RelativeLayout
+                android:layout_toEndOf="@+id/orderLogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+                <TextView
+                    android:id="@+id/orderId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"/>
+                <TextView
+                    android:id="@+id/orderEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:layout_below="@+id/orderId"/>
+                <TextView
+                    android:id="@+id/orderPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderEmail"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

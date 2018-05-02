@@ -22,8 +22,6 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -33,9 +31,6 @@ public class MainController extends BaseController {
 
     private Context context;
     private OrdersRequest ordersRequest;
-
-    //We want to process these tasks in parallel
-    ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
     public MainController(Context context){
@@ -54,17 +49,9 @@ public class MainController extends BaseController {
                 //Convert it to json object so we can operate on it easier
                 try {
                     JsonObject ordersJson = (JsonObject) (new JsonParser()).parse(new InputStreamReader(response.body().byteStream(), "UTF-8"));
-                    executorService.submit(()->{
-                        getOrderToBeFilled(ordersJson);
-                    });
-
-                    executorService.submit(()->{
-                        getPendingPayments(ordersJson);
-                    });
-
-                    executorService.submit(()->{
-                        getCancelledOrders(ordersJson);
-                    });
+                    getOrderToBeFulFilled(ordersJson);
+                    getPendingPayments(ordersJson);
+                    getCancelledOrders(ordersJson);
                 } catch (UnsupportedEncodingException e){
                     e.printStackTrace();
                 }
@@ -79,8 +66,9 @@ public class MainController extends BaseController {
         });
     }
 
-
-    public void getOrderToBeFilled(JsonObject ordersJson){
+    //Persist all the orderToBeFulFulled to main memory to be queried for when displaying to display activity
+    private static OrderDOList orderListDO;
+    public void getOrderToBeFulFilled(JsonObject ordersJson){
         JsonArray ordersListJSONArray = ordersJson.getAsJsonArray("orders");
         int ordersToBeFilled = 0;
         List<OrderDO> orderDOList = new ArrayList<>();
@@ -100,10 +88,15 @@ public class MainController extends BaseController {
             }
 
         //Post number of orders to be filled on event bus
-        EventBus.getDefault().post(new NumberOfOrdersCategoryDO(EventPojo.ORDERS_TO_FULFILL, ordersToBeFilled));
+        EventBus.getDefault().post(new NumberOfOrdersCategoryDO(EventPojo.ORDERS_TO_FULFILL, String.valueOf(ordersToBeFilled)));
 
-        //Post the first 10 orders that fulfill this category to the event bus
+        //Store all the orderDoLists to memory but only display first 10 orders that fulfill this category to the event bus
+        orderListDO = new OrderDOList(EventPojo.ORDERS_TO_FULFILL, orderDOList);
         EventBus.getDefault().post(new OrderDOList(EventPojo.ORDERS_TO_FULFILL, orderDOList.size() >= 10 ?  orderDOList.subList(0, 10) : orderDOList));
+    }
+
+    public static OrderDOList getOrderListDO(){
+        return orderListDO;
     }
 
     public void getPendingPayments(JsonObject ordersJson){
@@ -112,7 +105,7 @@ public class MainController extends BaseController {
         List<OrderDO> orderDOList = new ArrayList<>();
 
         for (JsonElement orderElement : ordersListJSONArray) {
-            if (orderElement.getAsJsonObject().get("").isJsonNull()) {
+            if (!orderElement.getAsJsonObject().get("financial_status").getAsString().equals("paid")) {
                 //Increment counter
                 pendingPaymentOrders++;
                 //Add this object to list
@@ -125,7 +118,7 @@ public class MainController extends BaseController {
         }
 
         //Post number of pending payments orders to event bus
-        EventBus.getDefault().post(new NumberOfOrdersCategoryDO(EventPojo.PENDING_PAYMENTS, pendingPaymentOrders));
+        EventBus.getDefault().post(new NumberOfOrdersCategoryDO(EventPojo.PENDING_PAYMENTS, String.valueOf(pendingPaymentOrders)));
 
         //Post first 10 orders that fulfill this category to the event bus
         EventBus.getDefault().post(orderDOList.size() >= 10 ? orderDOList.subList(0, 10) : orderDOList);
@@ -151,7 +144,7 @@ public class MainController extends BaseController {
         }
 
         //Post number of cancelled payments to event bus
-        EventBus.getDefault().post(new NumberOfOrdersCategoryDO(EventPojo.CANCELLED_ORDERS, cancelledOrders));
+        EventBus.getDefault().post(new NumberOfOrdersCategoryDO(EventPojo.CANCELLED_ORDERS, String.valueOf(cancelledOrders)));
 
         //Post first 10 orders that fulfill this category to the event bus
         EventBus.getDefault().post(orderDOList.size() >= 10 ? orderDOList.subList(0, 10) : orderDOList);

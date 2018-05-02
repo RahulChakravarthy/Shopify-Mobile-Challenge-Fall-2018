@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/mainLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,6 +12,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:layout_margin="10dp"
                 android:text="@string/summary"
                 android:textColor="@color/colorBlack"
                 android:layout_gravity="center"
@@ -24,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TableRow
-                    android:padding="10dp">
+                    android:layout_margin="10dp">
                     <TextView
                         android:text="@string/orders_to_be_fulfilled"
                         android:textColor="@color/colorBlack"
@@ -32,30 +34,35 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/ordersToBeFulfilledText"
+                        android:text="@string/loading"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </TableRow>
                 <TableRow
-                    android:padding="10dp">
+                    android:layout_margin="10dp">
                     <TextView
                         android:text="@string/number_of_pending_payment_orders"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/pendingPaymentOrders"
+                        android:text="@string/loading"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </TableRow>
                 <TableRow
-                    android:padding="10dp">
+                    android:layout_margin="10dp">
                     <TextView
                         android:text="@string/number_of_cancelled_orders"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/cancelledOrders"
+                        android:text="@string/loading"
                         android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -63,7 +70,8 @@
             </TableLayout>
             <TextView
                 android:text="@string/orders_to_fulfill"
-                android:textColor="@color/colorBlack"
+                android:id="@+id/numberOfOrdersToBeFulfilledText"
+                android:textColor="@color/lightBlue"
                 android:layout_gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -72,6 +80,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/ordersToFulfilRecyclerView"
+                android:layoutAnimation="@anim/layout_animation_fall_down"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -85,7 +94,8 @@
                 android:layout_height="wrap_content" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/pendingPaymentsRecyclerView"
+                android:id="@+id/pendingPaymentOrdersRecyclerView"
+                android:layoutAnimation="@anim/layout_animation_fall_down"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -100,6 +110,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/cancelledPaymentsRecyclerView"
+                android:layoutAnimation="@anim/layout_animation_fall_down"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
