@@ -4,115 +4,131 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/green"
             android:orientation="vertical">
             <TextView
-                android:layout_margin="10dp"
-                android:text="@string/summary"
-                android:textColor="@color/colorBlack"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/opensansboldfont"
+                android:text="@string/summary"
+                android:textColor="@color/colorBlack" />
 
-            <TableLayout
-                android:shrinkColumns="*"
-                android:stretchColumns="*"
+            <ImageView
+                android:background="@drawable/bottom_gradient_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TableRow
-                    android:layout_margin="10dp">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:id="@+id/numberOfOrdersByProvince"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/green">
                     <TextView
-                        android:text="@string/orders_to_be_fulfilled"
-                        android:textColor="@color/colorBlack"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/ordersToBeFulfilledText"
-                        android:text="@string/loading"
-                        android:textColor="@color/colorBlack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-                <TableRow
-                    android:layout_margin="10dp">
-                    <TextView
-                        android:text="@string/number_of_pending_payment_orders"
-                        android:textColor="@color/colorBlack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/pendingPaymentOrders"
-                        android:text="@string/loading"
-                        android:textColor="@color/colorBlack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-                <TableRow
-                    android:layout_margin="10dp">
-                    <TextView
-                        android:text="@string/number_of_cancelled_orders"
-                        android:textColor="@color/colorBlack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/cancelledOrders"
-                        android:text="@string/loading"
-                        android:textColor="@color/colorBlack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-            </TableLayout>
-            <TextView
-                android:text="@string/orders_to_fulfill"
-                android:id="@+id/numberOfOrdersToBeFulfilledText"
-                android:textColor="@color/lightBlue"
-                android:layout_gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensansboldfont"
+                        android:text="@string/number_orders_by_province"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/darkBlue"/>
+                    <ImageView
+                        android:background="@drawable/bottom_gradient_shadow"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+                </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/ordersToFulfilRecyclerView"
-                android:layoutAnimation="@anim/layout_animation_fall_down"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <TableLayout
+                    android:id="@+id/ordersByProvinceTableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+                </TableLayout>
 
-            <TextView
-                android:text="@string/pending_payments"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorBlack"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/loadingOrdersByProvince"
+                    android:layout_gravity="center"
+                    android:text="@string/loading"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/pendingPaymentOrdersRecyclerView"
-                android:layoutAnimation="@anim/layout_animation_fall_down"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
 
-            <TextView
-                android:text="@string/cancelled_payments"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorBlack"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    <TableRow android:layout_margin="10dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/cancelledPaymentsRecyclerView"
-                android:layoutAnimation="@anim/layout_animation_fall_down"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </ScrollView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregularfont"
+                            android:text="@string/number_orders_by_year"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/ordersByYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensansregularfont"
+                            android:text="@string/loading"
+                            android:textColor="@color/colorBlack" />
+                    </TableRow>
+                </TableLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/green">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensansboldfont"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/orders_by_year"
+                        android:textColor="@color/colorBlack" />
+
+                    <ImageView
+                        android:background="@drawable/bottom_gradient_shadow"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/ordersIn2017"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutAnimation="@anim/layout_animation_fall_down" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -39,4 +39,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //RecyclerView
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+    //Joda time
+    implementation group: 'joda-time', name: 'joda-time', version: '2.3'
 }

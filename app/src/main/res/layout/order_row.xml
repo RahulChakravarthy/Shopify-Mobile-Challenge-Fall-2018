@@ -40,10 +40,17 @@
                     android:textColor="@color/colorBlack"
                     android:layout_below="@+id/orderId"/>
                 <TextView
+                    android:id="@+id/orderProvince"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/orderEmail"
+                    android:textColor="@color/colorBlack"/>
+                <TextView
                     android:id="@+id/orderPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/orderEmail"/>
+                    android:layout_below="@+id/orderProvince"/>
+
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>

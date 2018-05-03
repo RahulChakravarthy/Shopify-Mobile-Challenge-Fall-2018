@@ -7,4 +7,8 @@
     <color name="colorShadowGray">#CABBBBBB</color>
     <color name="colorLightGray">#CBD4D8</color>
     <color name="lightBlue">#5893C8</color>
+    <color name="green">#81B665</color>
+    <color name="darkGreen">#8ed767</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="darkBlue">#0B0080</color>
 </resources>

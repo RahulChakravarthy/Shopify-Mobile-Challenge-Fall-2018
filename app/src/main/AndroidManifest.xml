@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.OrdersToFulfillActivity"></activity>
+        <activity android:name=".Activities.OrdersByProvince"></activity>
     </application>
 
 </manifest>
