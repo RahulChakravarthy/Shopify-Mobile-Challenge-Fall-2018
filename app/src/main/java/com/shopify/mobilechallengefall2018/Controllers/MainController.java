@@ -79,11 +79,11 @@ public class MainController extends BaseController {
         //Orders to be fulfilled means that there are some keys in the json object that have null values
         for (JsonElement orderElement : ordersListJSONArray) {
             //Quick check if this order even contains info on province
-            if (!orderElement.getAsJsonObject().has("customer")){
+            if (!orderElement.getAsJsonObject().has("shipping_address")){
                 continue;
             }
             //get province where this order originates
-            String province =  orderElement.getAsJsonObject().get("customer").getAsJsonObject().get("default_address").getAsJsonObject().get("province").getAsString();
+            String province =  orderElement.getAsJsonObject().get("shipping_address").getAsJsonObject().get("province").getAsString();
             //if the province already is stored then increment the order counter for that province
             if (numberOfOrdersByProvince.containsKey(province)){
                 numberOfOrdersByProvince.put(province, numberOfOrdersByProvince.get(province) + 1);
@@ -128,7 +128,7 @@ public class MainController extends BaseController {
                 //Add this object to list
                 orderDOList.add(new OrderDO(
                         EventPojo.ORDERS_BY_PROVINCE,
-                        orderElement.getAsJsonObject().has("customer")? orderElement.getAsJsonObject().get("customer").getAsJsonObject().get("default_address").getAsJsonObject().get("province").getAsString() : null,
+                        orderElement.getAsJsonObject().has("shipping_address")? orderElement.getAsJsonObject().get("shipping_address").getAsJsonObject().get("province").getAsString() : null,
                         orderElement.getAsJsonObject().get("id").getAsString(),
                         orderElement.getAsJsonObject().get("email").getAsString(),
                         orderElement.getAsJsonObject().get("total_price").getAsString()));
