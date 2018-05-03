@@ -12,6 +12,7 @@ public abstract class BaseView {
     protected ViewGroup viewGroup;
     protected Context context;
 
+
     public abstract void setupView();
 
     //Getters

@@ -97,7 +97,8 @@ public class MainController extends BaseController {
                     province,
                     orderElement.getAsJsonObject().get("id").getAsString(),
                     orderElement.getAsJsonObject().get("email").getAsString(),
-                    orderElement.getAsJsonObject().get("total_price").getAsString()));
+                    orderElement.getAsJsonObject().get("total_price").getAsString(),
+                    orderElement.getAsJsonObject().get("created_at").getAsString()));
         }
 
         numberOfOrdersByProvince.forEach((province, value) -> {
@@ -131,7 +132,8 @@ public class MainController extends BaseController {
                         orderElement.getAsJsonObject().has("shipping_address")? orderElement.getAsJsonObject().get("shipping_address").getAsJsonObject().get("province").getAsString() : null,
                         orderElement.getAsJsonObject().get("id").getAsString(),
                         orderElement.getAsJsonObject().get("email").getAsString(),
-                        orderElement.getAsJsonObject().get("total_price").getAsString()));
+                        orderElement.getAsJsonObject().get("total_price").getAsString(),
+                        orderElement.getAsJsonObject().get("created_at").getAsString()));
                 }
         }
 

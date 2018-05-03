@@ -21,6 +21,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         private TextView orderEmail;
         private TextView orderProvince;
         private TextView orderPrice;
+        private TextView orderCreateDate;
 
 
         public ViewHolder(View itemView) {
@@ -29,6 +30,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
             orderEmail = itemView.findViewById(R.id.orderEmail);
             orderProvince = itemView.findViewById(R.id.orderProvince);
             orderPrice = itemView.findViewById(R.id.orderPrice);
+            orderCreateDate = itemView.findViewById(R.id.orderCreateDate);
         }
     }
 
@@ -51,6 +53,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         holder.orderEmail.setText(orderDO.getEmail());
         holder.orderProvince.setText(orderDO.getProvince());
         holder.orderPrice.setText("$" + orderDO.getTotalPrice());
+        holder.orderCreateDate.setText(orderDO.getDate());
     }
 
     @Override

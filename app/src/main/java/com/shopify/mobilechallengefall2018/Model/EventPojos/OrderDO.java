@@ -8,17 +8,19 @@ import android.support.annotation.NonNull;
 public class OrderDO extends EventPojo implements Comparable<OrderDO>{
 
     //Fields we want to store
-    private String province;
-    private String orderId;
-    private String email;
-    private String totalPrice;
+    private final String province;
+    private final String orderId;
+    private final String email;
+    private final String totalPrice;
+    private final String date;
 
-    public OrderDO(String id, String province, String orderId, String email, String totalPrice) {
+    public OrderDO(String id, String province, String orderId, String email, String totalPrice, String date) {
         super(id);
         this.province = province;
         this.orderId = orderId;
         this.email = email;
         this.totalPrice = totalPrice;
+        this.date = date;
     }
 
     @Override
@@ -42,4 +44,7 @@ public class OrderDO extends EventPojo implements Comparable<OrderDO>{
         return this.province;
     }
 
+    public String getDate() {
+        return date;
+    }
 }
